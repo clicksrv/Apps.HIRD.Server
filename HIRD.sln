@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{63046081-A725-4893-8BA4-9D09D25DF9E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{273DAC16-39FE-4F44-A477-F16E80BE7F34}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "soln", "soln", "{56ED70DD-103C-4CE5-AC66-0BC6ED3E0ADF}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+		setup.iss = setup.iss
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIRD.ServerTests", "test\HIRD.ServerTests.csproj", "{D4B7730A-8BCC-44C6-B6B0-097539C758E9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIRD.Proto", "src\HIRD.Proto\HIRD.Proto.csproj", "{A791A199-AE64-46DA-91F7-7D73BEF15916}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIRD.HWiNFOAccess", "src\HIRD.HWiNFOAccess\HIRD.HWiNFOAccess.csproj", "{56A99363-A899-48E5-B0DB-4A9502E2C0AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIRD.Service", "src\HIRD.Service\HIRD.Service.csproj", "{A4E70D79-20D8-44EA-8784-E1314065B887}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HIRD", "src\HIRD\HIRD.csproj", "{0B31760D-ADCF-4E0E-A523-B458FB3245B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4B7730A-8BCC-44C6-B6B0-097539C758E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B7730A-8BCC-44C6-B6B0-097539C758E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B7730A-8BCC-44C6-B6B0-097539C758E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B7730A-8BCC-44C6-B6B0-097539C758E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A791A199-AE64-46DA-91F7-7D73BEF15916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A791A199-AE64-46DA-91F7-7D73BEF15916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A791A199-AE64-46DA-91F7-7D73BEF15916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A791A199-AE64-46DA-91F7-7D73BEF15916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56A99363-A899-48E5-B0DB-4A9502E2C0AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56A99363-A899-48E5-B0DB-4A9502E2C0AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56A99363-A899-48E5-B0DB-4A9502E2C0AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56A99363-A899-48E5-B0DB-4A9502E2C0AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E70D79-20D8-44EA-8784-E1314065B887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E70D79-20D8-44EA-8784-E1314065B887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E70D79-20D8-44EA-8784-E1314065B887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E70D79-20D8-44EA-8784-E1314065B887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B31760D-ADCF-4E0E-A523-B458FB3245B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B31760D-ADCF-4E0E-A523-B458FB3245B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B31760D-ADCF-4E0E-A523-B458FB3245B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B31760D-ADCF-4E0E-A523-B458FB3245B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4B7730A-8BCC-44C6-B6B0-097539C758E9} = {273DAC16-39FE-4F44-A477-F16E80BE7F34}
+		{A791A199-AE64-46DA-91F7-7D73BEF15916} = {63046081-A725-4893-8BA4-9D09D25DF9E4}
+		{56A99363-A899-48E5-B0DB-4A9502E2C0AF} = {63046081-A725-4893-8BA4-9D09D25DF9E4}
+		{A4E70D79-20D8-44EA-8784-E1314065B887} = {63046081-A725-4893-8BA4-9D09D25DF9E4}
+		{0B31760D-ADCF-4E0E-A523-B458FB3245B0} = {63046081-A725-4893-8BA4-9D09D25DF9E4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79D2B3BC-6494-4DAA-AA7B-CE83F6A488C4}
+	EndGlobalSection
+EndGlobal

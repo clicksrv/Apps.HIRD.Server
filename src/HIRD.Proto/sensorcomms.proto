@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option csharp_namespace = "HIRD.Proto";
+package sensorcomms;
+
+message ReadingData {
+    double current = 1;
+    double min = 2;
+    double max = 3;
+    double avg = 4;
+}
+
+message ReadingDataStream {
+    CpuReadings cpuReadings = 1;
+    GpuReadings gpuReadings = 2;
+    SystemReadings systemReadings = 3;
+}
+
+message CpuReadings {
+    ReadingData packageTemp = 1;
+    repeated ReadingData coreTemps = 2;
+    ReadingData thermalThrottling = 3;
+    ReadingData coreClockEffective = 4;
+    repeated ReadingData coreUsages = 5;
+    ReadingData power = 6;
+    ReadingData fanSpeed = 7;
+}
+
+message GpuReadings {
+    ReadingData temp = 1;
+    ReadingData hotSpotTemp = 2;
+    ReadingData clock = 3;
+    ReadingData memoryClock = 4;
+    repeated ReadingData fanSpeeds = 5;
+    ReadingData power = 6;
+    ReadingData usage = 7;
+    ReadingData memoryUsage = 8;
+}
+
+message SystemReadings {
+    ReadingData memoryClock = 1;
+    ReadingData ramLoad = 2;
+    repeated ReadingData storageTemps = 3;
+    ReadingData power = 4;
+    ReadingData chargeLevel = 5;
+}
+
+message ComputerInfoRequest {}
+
+message MonitorRequest {
+    string deviceName = 1;
+}
+
+message ComputerInfo {
+    enum SystemType {
+        DESKTOP = 0;
+        LAPTOP = 1;
+    }
+
+    enum StorageType {
+        SATA = 0;
+        SSD = 1;
+    }
+
+    string computerName = 1;
+    string systemMake = 2;
+    string cpuName = 3;
+    string gpuName = 4;
+    string memory = 5;
+    repeated string storageNames = 6;
+    repeated StorageType storageTypes = 7;
+    SystemType systemType = 8;
+}
+
+service SensorService {
+    rpc GetComputerInfo(ComputerInfoRequest) returns (ComputerInfo) {};
+    rpc Monitor(MonitorRequest) returns (stream ReadingDataStream) {};
+}
