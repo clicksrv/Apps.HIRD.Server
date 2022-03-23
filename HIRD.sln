@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "soln", "soln", "{56ED70DD-103C-4CE5-AC66-0BC6ED3E0ADF}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE = LICENSE
 		README.md = README.md
 		setup.iss = setup.iss
 	EndProjectSection
