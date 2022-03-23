@@ -1,4 +1,4 @@
-[ReleaseCI](https://github.com/clicksrv/Apps.HIRD.Server/actions/workflows/main.yml/badge.svg)](https://github.com/clicksrv/Apps.HIRD.Server/actions/workflows/main.yml)
+[[ReleaseCI](https://github.com/clicksrv/Apps.HIRD.Server/actions/workflows/main.yml/badge.svg)](https://github.com/clicksrv/Apps.HIRD.Server/actions/workflows/main.yml)
 # HIRD (a.k.a. HWiNFO Remote Display)
 An open-source project built with C# and Flutter to view sensor stats on any mobile device.
 
