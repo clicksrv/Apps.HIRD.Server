@@ -24,8 +24,8 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=.\src\HIRD\bin\
-OutputBaseFilename=.\publish\Setup.exe
+OutputDir=.\publish\
+OutputBaseFilename=Setup
 SetupIconFile=.\src\HIRD\icon.ico
 Compression=lzma
 SolidCompression=yes
