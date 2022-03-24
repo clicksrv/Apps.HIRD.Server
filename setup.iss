@@ -4,7 +4,7 @@
 #define MyAppName "HIRD"
 #define MyAppExeName "HIRD.exe"
 #define MyAppSettingsFile "HIRD.settings.json"
-#define MyAppVersion "0.2.4-alpha"
+#define MyAppVersion "0.2.5-alpha"
 #define MyAppPublisher "Saurav KS"
 #define MyAppURL "https://clicksrv.github.io/HIRD"
 

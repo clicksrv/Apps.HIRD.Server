@@ -1,15 +1,15 @@
-# HIRD Server (v0.2.4-alpha)
-
+# HIRD Windows Server
 HIRD (a.k.a. HWiNFO Remote Display) Server is an application that allows a system with HWiNFO to act as a server for remote devices to connect and showcase the vitals of it.
 
 ## Release Notes
 
-- Added Release CI
-- Namespace is now updated to Clicksrv.Apps.HIRD.Server
+- Tray menu added
+- Optimizations and bug fixes
 
-## Subtext
+## Note from the developer
 
-- This app is still pre-release, developed by a single developer, Saurav Kumar Sahoo, and I have limited access to hardware configurations.
+- This is an alpha build
+- This app is being developed and managed by just a single developer at the moment.
 - Before the app can be released for widespread use, I require assistance in testing and feedback on hardware combinations that I do not have access to.
 - Please feel free to contribute with issues or feature requests.
 - You also agree with [HWiNFO's License Agreement](https://www.hwinfo.com/files/license.pdf) by using this application.
