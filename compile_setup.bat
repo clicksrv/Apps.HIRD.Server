@@ -17,7 +17,7 @@ echo:
 echo [ %publish_msg% ]
 echo:
 
-dotnet publish -p:PublishProfile=FolderProfile
+dotnet publish -p:PublishProfile=\Properties\PublishProfiles\FolderProfile
 
 cd ..\..
 
