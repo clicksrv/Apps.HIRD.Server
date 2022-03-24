@@ -1,5 +1,5 @@
 @echo off
-set /p v="Enter Version Name in format (vX.Y.Z[-suffix]): "
+set /p v=<VERSION
 
 set pulling_msg=Pulling any Unsynced Changes
 set publish_msg=Publishing Files for Setup

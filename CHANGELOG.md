@@ -5,6 +5,7 @@ HIRD (a.k.a. HWiNFO Remote Display) Server is an application that allows a syste
 
 - Tray menu added
 - Optimizations and bug fixes
+- App Version is now displayed in Title
 
 ## Note from the developer
 

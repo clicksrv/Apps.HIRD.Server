@@ -32,6 +32,10 @@ namespace HIRD.ServerUI
         public MainForm(ILoggerFactory loggerFactory)
         {
             InitializeComponent();
+
+            var version = File.ReadAllText("VERSION");
+            Text += $" {version}";
+
             compNameText.Text = Environment.MachineName;
             var ips = GetLocalIPAddress();
             if (ips.Count > 1)
