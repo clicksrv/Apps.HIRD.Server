@@ -1,13 +1,16 @@
 @echo off
-echo:
-
 set /p v="Enter Version Name in format (vX.Y.Z[-suffix]): "
 
+set pulling_msg=[ Pulling any Unsynced Changes ]
 set publish_msg=[ Publishing Files for Setup ]
 set compile_msg=[ Compiling Setup Exe ]
 set deploy_msg=[ Deploying Release ]
 
 title Compiling HIRD Windows Server Setup
+
+echo:
+echo %pulling_msg%
+echo:
 
 cd src\HIRD
 echo:
@@ -34,4 +37,3 @@ git push origin %v%
 
 echo:
 echo:
-pause
