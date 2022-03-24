@@ -9,9 +9,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<ApplicationIcon>icon.ico</ApplicationIcon>
 		<AssemblyName>HIRD</AssemblyName>
-		<Version>0.2.3</Version>
 		<VersionSuffix>alpha</VersionSuffix>
-		<FileVersion>0.2.3.0</FileVersion>
 		<Optimization Condition="'$(CompileConfig)' == 'RELEASE'">true</Optimization>
 	</PropertyGroup>
 
@@ -20,7 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Clicksrv.StartWithOSSettings" Version="0.3.2" />
+	  <PackageReference Include="Clicksrv.Packages.StartWithOSSettings" Version="0.3.3" />
 	</ItemGroup>
 
 	<ItemGroup>

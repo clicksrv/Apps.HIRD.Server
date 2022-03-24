@@ -19,7 +19,7 @@ echo:
 echo [ %publish_msg% ]
 echo:
 
-dotnet publish -p:PublishProfile=\Properties\PublishProfiles\FolderProfile
+dotnet publish -p:PublishProfile=\Properties\PublishProfiles\FolderProfile /p:Version=%v%
 
 cd ..\..
 

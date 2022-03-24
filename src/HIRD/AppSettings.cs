@@ -1,4 +1,4 @@
-﻿using Clicksrv.StartWithOSSettings;
+﻿using Clicksrv.Packages.StartWithOSSettings;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
