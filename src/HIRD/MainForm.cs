@@ -8,6 +8,11 @@ namespace HIRD.ServerUI
 {
     public partial class MainForm : Form
     {
+        private const string HI_NOT_RUNNING = "HWiNFO64 is not running!";
+        private const string HR_SM_DISABLED = "HWiNFO64 Shared Memory Access is not enabled! See Help to learn how to enable.";
+        private const string NOT_READY = "Not Ready";
+        private const string READY = "Ready";
+
         private GrpcServer? _grpcServer;
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<MainForm> _logger;
@@ -73,7 +78,6 @@ namespace HIRD.ServerUI
 
         private void CheckStatus()
         {
-            _logger.LogInformation("Checking HWiNFO Status");
             var isRunning = HWiNFOProcessDetails.IsRunning();
             var isSMRunning = isRunning && HWiNFOSharedMemoryAccessor.IsRunning();
 
@@ -92,11 +96,15 @@ namespace HIRD.ServerUI
                 if (startStopServerButton.Checked)
                     startStopServerButton.Checked = false;
 
-                statusLabel.Text = "Not Ready";
+                statusLabel.Text = NOT_READY;
                 errorLabel.Visible = true;
-                errorLabel.Text = "HWiNFO64 is not running!";
+                errorLabel.Text = HI_NOT_RUNNING;
                 startStopServerButton.Enabled = false;
                 statusIndicator.BackgroundImage = Properties.Resources.bullet_red;
+                menuItem_Error.Visible = true;
+                menuItem_Error.Text = HI_NOT_RUNNING;
+                menuItem_startServer.Enabled = false;
+                menuItem_stopServer.Enabled = false;
                 SetSize(false, true);
             }
             else if (_hwInfoStatus == 1)
@@ -104,21 +112,29 @@ namespace HIRD.ServerUI
                 if (startStopServerButton.Checked)
                     startStopServerButton.Checked = false;
 
-                statusLabel.Text = "Not Ready";
+                statusLabel.Text = NOT_READY;
                 errorLabel.Visible = true;
-                errorLabel.Text = "HWiNFO64 Shared Memory Access is not enabled! See Help to learn how to enable.";
+                errorLabel.Text = HR_SM_DISABLED;
                 startStopServerButton.Enabled = false;
                 statusIndicator.BackgroundImage = Properties.Resources.bullet_red;
+                menuItem_Error.Visible = true;
+                menuItem_Error.Text = HR_SM_DISABLED;
+                menuItem_startServer.Enabled = false;
+                menuItem_stopServer.Enabled = false;
                 SetSize(false, true);
             }
-            else if (statusLabel.Text == "Not Ready")
+            else if (statusLabel.Text == NOT_READY)
             {
-                statusLabel.Text = "Ready";
-                errorLabel.Text = "";
+                statusLabel.Text = READY;
+                errorLabel.Text = string.Empty;
                 errorLabel.Visible = false;
                 startStopServerButton.Enabled = true;
                 statusIndicator.BackgroundImage = Properties.Resources.bullet_yellow;
-                SetSize(_grpcServer != null, false);
+                menuItem_Error.Visible = false;
+                menuItem_Error.Text = string.Empty;
+                menuItem_startServer.Enabled = true;
+                menuItem_stopServer.Enabled = false;
+                SetSize(_grpcServer is not null, false);
                 if (AppSettings.Instance.AutoStartServer)
                     startStopServerButton.Checked = true;
             }
@@ -152,6 +168,8 @@ namespace HIRD.ServerUI
         {
             startStopServerButton.Enabled = false;
             statusIndicator.BackgroundImage = Properties.Resources.bullet_yellow;
+            menuItem_startServer.Enabled = false;
+            menuItem_stopServer.Enabled = false;
 
             try
             {
@@ -189,7 +207,7 @@ namespace HIRD.ServerUI
 
         private void UpdateFormAsPerServerStatus()
         {
-            bool isServerRunning = _grpcServer != null;
+            bool isServerRunning = _grpcServer is not null;
 
             startStopServerButton.Checked = isServerRunning;
             connectedClientsLabel.Visible = isServerRunning;
@@ -198,18 +216,22 @@ namespace HIRD.ServerUI
 
             if (isServerRunning)
             {
+                menuItem_startServer.Enabled = false;
+                menuItem_stopServer.Enabled = true;
                 startStopServerButton.Text = "Stop Server";
                 statusLabel.Text = "Running";
                 statusIndicator.BackgroundImage = Properties.Resources.bullet_green;
             }
             else
             {
+                menuItem_startServer.Enabled = true;
+                menuItem_stopServer.Enabled = false;
                 connectedClientsList.Items.Clear();
                 startStopServerButton.Text = "Start Server";
 
                 if (_hwInfoStatus == 2)
                 {
-                    statusLabel.Text = "Ready";
+                    statusLabel.Text = READY;
                     statusIndicator.BackgroundImage = Properties.Resources.bullet_yellow;
                 }
             }
@@ -252,7 +274,7 @@ namespace HIRD.ServerUI
             Show();
             WindowState = FormWindowState.Normal;
             BringToFront();
-            SetSize(_grpcServer != null, statusLabel.Text == "Not Ready");
+            SetSize(_grpcServer != null, statusLabel.Text == NOT_READY);
             ShowInTaskbar = true;
             notifyIcon.Visible = false;
         }
@@ -267,6 +289,11 @@ namespace HIRD.ServerUI
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ShowSettings();
+        }
+
+        private static void ShowSettings()
+        {
             SettingsForm settingsForm = new();
             settingsForm.ShowDialog();
         }
@@ -279,6 +306,32 @@ namespace HIRD.ServerUI
         private void OnClose(object sender, FormClosingEventArgs e)
         {
             startStopServerButton.Checked = false;
+        }
+
+        private void menuItem_Show_Click(object sender, EventArgs e)
+        {
+            RestoreFromTray();
+        }
+
+        private void menuItem_Settings_Click(object sender, EventArgs e)
+        {
+            ShowSettings();
+        }
+
+        private void menuItem_startServer_Click(object sender, EventArgs e)
+        {
+            startStopServerButton.Checked = true;
+        }
+
+        private void menuItem_stopServer_Click(object sender, EventArgs e)
+        {
+            startStopServerButton.Checked = false;
+        }
+
+        private void menuItem_Exit_Click(object sender, EventArgs e)
+        {
+            startStopServerButton.Checked = false;
+            Close();
         }
     }
 }

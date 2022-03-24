@@ -45,12 +45,23 @@ namespace HIRD.ServerUI
             this.statusLabel = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.trayContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuItem_Show = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_Settings = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItem_startServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_stopServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_Error = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.serverInfoGroup = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.statusIndicator)).BeginInit();
             this.statusGroup.SuspendLayout();
+            this.trayContextMenu.SuspendLayout();
             this.serverInfoGroup.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -190,9 +201,86 @@ namespace HIRD.ServerUI
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.notifyIcon.BalloonTipText = "HIRD";
             this.notifyIcon.BalloonTipTitle = "status";
+            this.notifyIcon.ContextMenuStrip = this.trayContextMenu;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "HIRD";
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // trayContextMenu
+            // 
+            this.trayContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItem_Show,
+            this.menuItem_Settings,
+            this.toolStripSeparator2,
+            this.menuItem_startServer,
+            this.menuItem_stopServer,
+            this.menuItem_Error,
+            this.toolStripSeparator1,
+            this.menuItem_Exit,
+            this.toolStripSeparator3});
+            this.trayContextMenu.Name = "trayContextMenu";
+            this.trayContextMenu.Size = new System.Drawing.Size(181, 176);
+            // 
+            // menuItem_Show
+            // 
+            this.menuItem_Show.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.menuItem_Show.Name = "menuItem_Show";
+            this.menuItem_Show.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Show.Text = "Show";
+            this.menuItem_Show.Click += new System.EventHandler(this.menuItem_Show_Click);
+            // 
+            // menuItem_Settings
+            // 
+            this.menuItem_Settings.Name = "menuItem_Settings";
+            this.menuItem_Settings.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Settings.Text = "Settings";
+            this.menuItem_Settings.Click += new System.EventHandler(this.menuItem_Settings_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // menuItem_startServer
+            // 
+            this.menuItem_startServer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.menuItem_startServer.Name = "menuItem_startServer";
+            this.menuItem_startServer.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_startServer.Text = "Start Server";
+            this.menuItem_startServer.Click += new System.EventHandler(this.menuItem_startServer_Click);
+            // 
+            // menuItem_stopServer
+            // 
+            this.menuItem_stopServer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.menuItem_stopServer.Name = "menuItem_stopServer";
+            this.menuItem_stopServer.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_stopServer.Text = "Stop Server";
+            this.menuItem_stopServer.Click += new System.EventHandler(this.menuItem_stopServer_Click);
+            // 
+            // menuItem_Error
+            // 
+            this.menuItem_Error.ForeColor = System.Drawing.Color.Crimson;
+            this.menuItem_Error.Name = "menuItem_Error";
+            this.menuItem_Error.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Error.Text = "Error";
+            this.menuItem_Error.Visible = false;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // menuItem_Exit
+            // 
+            this.menuItem_Exit.Name = "menuItem_Exit";
+            this.menuItem_Exit.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Exit.Text = "Exit";
+            this.menuItem_Exit.Click += new System.EventHandler(this.menuItem_Exit_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // serverInfoGroup
             // 
@@ -256,6 +344,7 @@ namespace HIRD.ServerUI
             ((System.ComponentModel.ISupportInitialize)(this.statusIndicator)).EndInit();
             this.statusGroup.ResumeLayout(false);
             this.statusGroup.PerformLayout();
+            this.trayContextMenu.ResumeLayout(false);
             this.serverInfoGroup.ResumeLayout(false);
             this.serverInfoGroup.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -282,5 +371,15 @@ namespace HIRD.ServerUI
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private Label errorLabel;
+        private ContextMenuStrip trayContextMenu;
+        private ToolStripMenuItem menuItem_Show;
+        private ToolStripMenuItem menuItem_Settings;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem menuItem_startServer;
+        private ToolStripMenuItem menuItem_stopServer;
+        private ToolStripMenuItem menuItem_Error;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem menuItem_Exit;
+        private ToolStripSeparator toolStripSeparator3;
     }
 }
