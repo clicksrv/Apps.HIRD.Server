@@ -27,5 +27,5 @@ jobs:
         with:
           body_path: CHANGELOG.md
           files: |
-            publish/Setup.exe
+            publish/HIRD_Setup.exe
             LICENSE

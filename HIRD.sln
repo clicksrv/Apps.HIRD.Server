@@ -11,9 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "soln", "soln", "{56ED70DD-1
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		CHANGELOG.md = CHANGELOG.md
+		compile_setup.bat = compile_setup.bat
 		LICENSE = LICENSE
 		README.md = README.md
 		setup.iss = setup.iss
+		setup_with_version.iss = setup_with_version.iss
 		VERSION = VERSION
 	EndProjectSection
 EndProject

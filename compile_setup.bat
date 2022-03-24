@@ -1,6 +1,8 @@
 @echo off
 set /p v=<VERSION
 
+echo [ Compiling and Deploying %v% ]
+
 set pulling_msg=Pulling any Unsynced Changes
 set publish_msg=Publishing Files for Setup
 set compile_msg=Compiling Setup Exe
@@ -34,6 +36,7 @@ echo:
 git add .
 git commit -m "%deploy_msg%"
 git tag %v%
+git push origin
 git push origin --tags
 
 echo:

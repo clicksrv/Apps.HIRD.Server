@@ -3,6 +3,7 @@
 
 #define MyAppName "HIRD"
 #define MyAppExeName "HIRD.exe"
+#define SetupExeName "HIRD_Setup"
 #define MyAppSettingsFile "HIRD.settings.json"
 #define MyAppPublisher "Saurav KS"
 #define MyAppURL "https://clicksrv.github.io/HIRD"
@@ -24,7 +25,7 @@ DisableProgramGroupPage=yes
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=.\publish\
-OutputBaseFilename=Setup
+OutputBaseFilename={#SetupExeName}
 SetupIconFile=.\src\HIRD\icon.ico
 Compression=lzma
 SolidCompression=yes
