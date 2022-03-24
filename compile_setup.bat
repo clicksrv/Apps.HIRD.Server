@@ -37,3 +37,5 @@ git push origin %v%
 
 echo:
 echo:
+
+pause
