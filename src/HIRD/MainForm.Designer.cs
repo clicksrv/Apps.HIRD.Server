@@ -219,41 +219,43 @@ namespace HIRD.ServerUI
             this.menuItem_Exit,
             this.toolStripSeparator3});
             this.trayContextMenu.Name = "trayContextMenu";
-            this.trayContextMenu.Size = new System.Drawing.Size(181, 176);
+            this.trayContextMenu.Size = new System.Drawing.Size(134, 154);
             // 
             // menuItem_Show
             // 
             this.menuItem_Show.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.menuItem_Show.Name = "menuItem_Show";
-            this.menuItem_Show.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Show.Size = new System.Drawing.Size(133, 22);
             this.menuItem_Show.Text = "Show";
             this.menuItem_Show.Click += new System.EventHandler(this.menuItem_Show_Click);
             // 
             // menuItem_Settings
             // 
             this.menuItem_Settings.Name = "menuItem_Settings";
-            this.menuItem_Settings.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Settings.Size = new System.Drawing.Size(133, 22);
             this.menuItem_Settings.Text = "Settings";
             this.menuItem_Settings.Click += new System.EventHandler(this.menuItem_Settings_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(130, 6);
             // 
             // menuItem_startServer
             // 
+            this.menuItem_startServer.Enabled = false;
             this.menuItem_startServer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.menuItem_startServer.Name = "menuItem_startServer";
-            this.menuItem_startServer.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_startServer.Size = new System.Drawing.Size(133, 22);
             this.menuItem_startServer.Text = "Start Server";
             this.menuItem_startServer.Click += new System.EventHandler(this.menuItem_startServer_Click);
             // 
             // menuItem_stopServer
             // 
+            this.menuItem_stopServer.Enabled = false;
             this.menuItem_stopServer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.menuItem_stopServer.Name = "menuItem_stopServer";
-            this.menuItem_stopServer.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_stopServer.Size = new System.Drawing.Size(133, 22);
             this.menuItem_stopServer.Text = "Stop Server";
             this.menuItem_stopServer.Click += new System.EventHandler(this.menuItem_stopServer_Click);
             // 
@@ -261,26 +263,27 @@ namespace HIRD.ServerUI
             // 
             this.menuItem_Error.ForeColor = System.Drawing.Color.Crimson;
             this.menuItem_Error.Name = "menuItem_Error";
-            this.menuItem_Error.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Error.Size = new System.Drawing.Size(133, 22);
             this.menuItem_Error.Text = "Error";
             this.menuItem_Error.Visible = false;
+            this.menuItem_Error.Click += new System.EventHandler(this.menuItem_Error_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(130, 6);
             // 
             // menuItem_Exit
             // 
             this.menuItem_Exit.Name = "menuItem_Exit";
-            this.menuItem_Exit.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Exit.Size = new System.Drawing.Size(133, 22);
             this.menuItem_Exit.Text = "Exit";
             this.menuItem_Exit.Click += new System.EventHandler(this.menuItem_Exit_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(130, 6);
             // 
             // serverInfoGroup
             // 

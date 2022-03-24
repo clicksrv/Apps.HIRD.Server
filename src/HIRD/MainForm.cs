@@ -10,8 +10,19 @@ namespace HIRD.ServerUI
     {
         private const string HI_NOT_RUNNING = "HWiNFO64 is not running!";
         private const string HR_SM_DISABLED = "HWiNFO64 Shared Memory Access is not enabled! See Help to learn how to enable.";
-        private const string NOT_READY = "Not Ready";
-        private const string READY = "Ready";
+
+        private const string SERVER_STATE_NOT_READY = "Not Ready";
+        private const string SERVER_STATE_READY = "Ready";
+        private const string SERVER_STATE_RUNNING = "Running";
+        private const string SERVER_STATE_STARTING = "Starting Server...";
+        private const string SERVER_STATE_STOPPING = "Stopping Server...";
+
+        private const string STOP_SERVER = "Stop Server";
+        private const string START_SERVER = "Start Server";
+        private const string PLEASE_WAIT = "Please wait";
+
+        private const string HELP_TEXT = "Ensure that HWiNFO64 is installed and running.\n\nFrom the System Tray, right click HWiNFO and open Settings.\n\nEnsure Shared Memory Support is checked.\n\nEnsure that this machine and your phone are connected to the same network.\n\nClick on Start Server.\n\nOpen an HIRD client app and select this server.";
+        private const string HELP_CAPTION = "How to run HIRD";
 
         private GrpcServer? _grpcServer;
         private readonly ILoggerFactory _loggerFactory;
@@ -43,14 +54,10 @@ namespace HIRD.ServerUI
 
         private void LoadAsPerSettings()
         {
-            if (_hwInfoStatus == 2 && AppSettings.Instance.AutoStartServer)
-                startStopServerButton.Checked = true;
-
             if (AppSettings.Instance.StartMinimized)
             {
                 WindowState = FormWindowState.Minimized;
-                if (AppSettings.Instance.MinimizeToTray)
-                    MinimizeToTray();
+                MinimizeToTray();
             }
         }
 
@@ -96,7 +103,7 @@ namespace HIRD.ServerUI
                 if (startStopServerButton.Checked)
                     startStopServerButton.Checked = false;
 
-                statusLabel.Text = NOT_READY;
+                statusLabel.Text = SERVER_STATE_NOT_READY;
                 errorLabel.Visible = true;
                 errorLabel.Text = HI_NOT_RUNNING;
                 startStopServerButton.Enabled = false;
@@ -112,7 +119,7 @@ namespace HIRD.ServerUI
                 if (startStopServerButton.Checked)
                     startStopServerButton.Checked = false;
 
-                statusLabel.Text = NOT_READY;
+                statusLabel.Text = SERVER_STATE_NOT_READY;
                 errorLabel.Visible = true;
                 errorLabel.Text = HR_SM_DISABLED;
                 startStopServerButton.Enabled = false;
@@ -123,9 +130,9 @@ namespace HIRD.ServerUI
                 menuItem_stopServer.Enabled = false;
                 SetSize(false, true);
             }
-            else if (statusLabel.Text == NOT_READY)
+            else if (_grpcServer is null)
             {
-                statusLabel.Text = READY;
+                statusLabel.Text = SERVER_STATE_READY;
                 errorLabel.Text = string.Empty;
                 errorLabel.Visible = false;
                 startStopServerButton.Enabled = true;
@@ -134,9 +141,22 @@ namespace HIRD.ServerUI
                 menuItem_Error.Text = string.Empty;
                 menuItem_startServer.Enabled = true;
                 menuItem_stopServer.Enabled = false;
-                SetSize(_grpcServer is not null, false);
+                SetSize(false, false);
                 if (AppSettings.Instance.AutoStartServer)
                     startStopServerButton.Checked = true;
+            }
+            else
+            {
+                statusLabel.Text = SERVER_STATE_RUNNING;
+                errorLabel.Text = string.Empty;
+                errorLabel.Visible = false;
+                startStopServerButton.Enabled = true;
+                statusIndicator.BackgroundImage = Properties.Resources.bullet_green;
+                menuItem_Error.Visible = false;
+                menuItem_Error.Text = string.Empty;
+                menuItem_startServer.Enabled = false;
+                menuItem_stopServer.Enabled = true;
+                SetSize(true, false);
             }
         }
 
@@ -175,15 +195,15 @@ namespace HIRD.ServerUI
             {
                 if (startStopServerButton.Checked)
                 {
-                    statusLabel.Text = "Starting Server...";
-                    startStopServerButton.Text = "Starting Server";
+                    statusLabel.Text = SERVER_STATE_STARTING;
+                    startStopServerButton.Text = PLEASE_WAIT;
                     _grpcServer = new(_loggerFactory.CreateLogger<GrpcServer>());
                     await _grpcServer.StartAsync(new CancellationToken());
                 }
                 else
                 {
-                    statusLabel.Text = "Stopping Server...";
-                    startStopServerButton.Text = "Stopping Server";
+                    statusLabel.Text = SERVER_STATE_STOPPING;
+                    startStopServerButton.Text = PLEASE_WAIT;
                     await _grpcServer!.StopAsync(new CancellationToken());
                     _grpcServer.Dispose();
                     _grpcServer = null;
@@ -217,21 +237,21 @@ namespace HIRD.ServerUI
             if (isServerRunning)
             {
                 menuItem_startServer.Enabled = false;
-                menuItem_stopServer.Enabled = true;
-                startStopServerButton.Text = "Stop Server";
-                statusLabel.Text = "Running";
+                menuItem_stopServer.Enabled = _hwInfoStatus == 2;
+                startStopServerButton.Text = STOP_SERVER;
+                statusLabel.Text = SERVER_STATE_RUNNING;
                 statusIndicator.BackgroundImage = Properties.Resources.bullet_green;
             }
             else
             {
-                menuItem_startServer.Enabled = true;
+                menuItem_startServer.Enabled = _hwInfoStatus == 2;
                 menuItem_stopServer.Enabled = false;
                 connectedClientsList.Items.Clear();
-                startStopServerButton.Text = "Start Server";
+                startStopServerButton.Text = START_SERVER;
 
                 if (_hwInfoStatus == 2)
                 {
-                    statusLabel.Text = READY;
+                    statusLabel.Text = SERVER_STATE_READY;
                     statusIndicator.BackgroundImage = Properties.Resources.bullet_yellow;
                 }
             }
@@ -274,7 +294,7 @@ namespace HIRD.ServerUI
             Show();
             WindowState = FormWindowState.Normal;
             BringToFront();
-            SetSize(_grpcServer != null, statusLabel.Text == NOT_READY);
+            SetSize(_grpcServer != null, statusLabel.Text == SERVER_STATE_NOT_READY);
             ShowInTaskbar = true;
             notifyIcon.Visible = false;
         }
@@ -300,7 +320,12 @@ namespace HIRD.ServerUI
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ensure that HWiNFO64 is installed and running.\n\nFrom the System Tray, right click HWiNFO and open Settings.\n\nEnsure Shared Memory Support is checked.\n\nEnsure that this machine and your phone are connected to the same network.\n\nClick on Start Server.\n\nOpen an HIRD client app and select this server.", "How to run HIRD", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            ShowHelp();
+        }
+
+        private static void ShowHelp()
+        {
+            MessageBox.Show(HELP_TEXT, HELP_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Question);
         }
 
         private void OnClose(object sender, FormClosingEventArgs e)
@@ -332,6 +357,11 @@ namespace HIRD.ServerUI
         {
             startStopServerButton.Checked = false;
             Close();
+        }
+
+        private void menuItem_Error_Click(object sender, EventArgs e)
+        {
+            ShowHelp();
         }
     }
 }
