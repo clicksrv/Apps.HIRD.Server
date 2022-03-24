@@ -1,12 +1,12 @@
 @echo off
 set /p v=<VERSION
 
-echo [ Compiling and Deploying %v% ]
+echo [ Compiling and Deploying v%v% ]
 
 set pulling_msg=Pulling any Unsynced Changes
 set publish_msg=Publishing Files for Setup
 set compile_msg=Compiling Setup Exe
-set deploy_msg=Deploying Release %v%
+set deploy_msg=Deploying Release v%v%
 
 title Compiling HIRD Windows Server Setup
 
@@ -19,7 +19,7 @@ echo:
 echo [ %publish_msg% ]
 echo:
 
-dotnet publish -p:PublishProfile=\Properties\PublishProfiles\FolderProfile /p:Version=%v%
+dotnet publish /p:Version=%v% --framework net6.0-windows --runtime win-x64 --configuration Release --no-self-contained
 
 cd ..\..
 
@@ -35,7 +35,7 @@ echo:
 
 git add .
 git commit -m "%deploy_msg%"
-git tag %v%
+git tag v%v%
 git push origin
 git push origin --tags
 

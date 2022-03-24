@@ -7,6 +7,7 @@
 #define MyAppSettingsFile "HIRD.settings.json"
 #define MyAppPublisher "Saurav KS"
 #define MyAppURL "https://clicksrv.github.io/HIRD"
+#define CompileOutputPath ".\src\HIRD\bin\Release\net6.0-windows\win-x64\publish\"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -51,8 +52,8 @@ Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\StartupA
 Root: HKCU; Subkey: "Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run"; ValueType: binary; ValueName: "{#MyAppName}"; ValueData: "02 00 00 00 00 00 00 00 00 00 00 00"; Tasks: enableautostart
 
 [Files]
-Source: ".\src\HIRD\bin\setup\{#MyAppExeName}"; DestDir: "{app}"; Flags: 
-Source: ".\src\HIRD\bin\setup\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
+Source: "{#CompileOutputPath}{#MyAppExeName}"; DestDir: "{app}"; Flags: 
+Source: "{#CompileOutputPath}*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

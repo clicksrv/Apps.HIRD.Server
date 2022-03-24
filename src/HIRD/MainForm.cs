@@ -33,8 +33,7 @@ namespace HIRD.ServerUI
         {
             InitializeComponent();
 
-            var version = File.ReadAllText("VERSION");
-            Text += $" {version}";
+            Text += $" v{GetType().Assembly.GetName().Version}";
 
             compNameText.Text = Environment.MachineName;
             var ips = GetLocalIPAddress();
