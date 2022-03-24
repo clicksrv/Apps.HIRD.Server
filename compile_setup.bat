@@ -33,7 +33,8 @@ echo:
 
 git add .
 git commit -m "%deploy_msg%"
-git push origin %v%
+git tag %v%
+git push origin --tags
 
 echo:
 echo:
