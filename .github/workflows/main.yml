@@ -28,4 +28,4 @@ jobs:
           body_path: CHANGELOG.md
           files: |
             publish/Setup.exe
-            LICENSE.txt
+            LICENSE
