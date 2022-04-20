@@ -10,7 +10,11 @@
 		<ApplicationIcon>icon.ico</ApplicationIcon>
 		<AssemblyName>HIRD</AssemblyName>
 		<VersionSuffix>alpha</VersionSuffix>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
 		<Optimization Condition="'$(CompileConfig)' == 'RELEASE'">true</Optimization>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>hird.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
 	<ItemGroup>

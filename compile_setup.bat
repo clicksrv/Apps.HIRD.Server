@@ -1,4 +1,5 @@
 @echo off
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat" -arch=x64 -host_arch=x64
 set /p v=<VERSION
 
 echo [ Compiling and Deploying v%v% ]
@@ -28,7 +29,6 @@ echo [ %compile_msg% ]
 echo:
 
 iscc setup_with_version.iss /DMyAppVersion=%v%
-
 echo:
 echo [ %deploy_msg% ]
 echo:
